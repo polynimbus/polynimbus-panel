@@ -16,7 +16,8 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-$path = "/var/cache/polynimbus/inventory";
+require "include/config.php";
+$path = "$_data_path/inventory";
 $file = "$path/raw-azure-functions-$account-$function-details.json";
 
 if (!file_exists($file))

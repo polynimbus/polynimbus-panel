@@ -53,8 +53,9 @@ function global_raw_types() {
 }
 
 function link_global_raw_content($vendor, $account, $type) {
+	global $_data_path;
 	$enc = urlencode($account);
-	$file = "/var/cache/polynimbus/inventory/raw-$vendor-$type-$account.json";
+	$file = "$_data_path/inventory/raw-$vendor-$type-$account.json";
 	$allowed = global_raw_types();
 
 	if (isset($allowed[$vendor][$type]) && file_exists($file) && filesize($file) > $allowed[$vendor][$type])

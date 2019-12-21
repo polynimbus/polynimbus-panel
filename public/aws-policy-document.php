@@ -15,7 +15,8 @@ else if (preg_match('/^([a-zA-Z0-9.@_-]+)$/', $_GET["group"], $tmp))
 else
 	$select = $type = "managed";
 
-$file = "/var/cache/polynimbus/inventory/policy-aws-$account-$select-$policy.json";
+require "include/config.php";
+$file = "$_data_path/inventory/policy-aws-$account-$select-$policy.json";
 
 if (!file_exists($file))
 	die("Invalid policy...");

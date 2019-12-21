@@ -21,7 +21,8 @@ if (isset($vendors[@$_GET["vendor"]]) &&
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/storage/$category-$account-$params.list";
+require "include/config.php";
+$file = "$_data_path/storage/$category-$account-$params.list";
 
 if (!file_exists($file))
 	die("Invalid account...");

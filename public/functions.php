@@ -1,10 +1,14 @@
 <?php
 
+require "include/config.php";
+
 function get_function_link($vendor, $account, $region, $function)
 {
+	global $_data_path;
+
 	if ($vendor == "aws")
 	{
-		$file = "/var/cache/polynimbus/inventory/raw-aws-functions-$account-$region.json";
+		$file = "$_data_path/inventory/raw-aws-functions-$account-$region.json";
 		if (!file_exists($file) || filesize($file) < 30)
 			return $function;
 
@@ -16,7 +20,7 @@ function get_function_link($vendor, $account, $region, $function)
 
 	if ($vendor == "azure")
 	{
-		$file = "/var/cache/polynimbus/inventory/raw-azure-functions-$account-$function-details.json";
+		$file = "$_data_path/inventory/raw-azure-functions-$account-$function-details.json";
 		if (!file_exists($file) || filesize($file) < 30)
 			return $function;
 
@@ -28,8 +32,7 @@ function get_function_link($vendor, $account, $region, $function)
 	return $function;
 }
 
-
-$file = "/var/cache/polynimbus/inventory/functions.list";
+$file = "$_data_path/inventory/functions.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";

@@ -1,5 +1,6 @@
 <?php
 
+require "include/config.php";
 require "include/page.php";
 require "include/acl.php";
 require "include/aws.php";
@@ -11,7 +12,7 @@ echo "<strong>List of all AWS raw data dumps</strong><br />\n";
 $regions = aws_region_list();
 $dumps = aws_regional_raw_types();
 
-$path = "/var/cache/polynimbus/inventory";
+$path = "$_data_path/inventory";
 $file = "$path/projects-aws.list";
 $data = file_get_contents($file);
 $lines = explode("\n", $data);

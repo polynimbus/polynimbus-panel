@@ -2,7 +2,8 @@
 
 function get_azure_storage_link($vendor, $category, $account, $param, $share)
 {
-	$file = "/var/cache/polynimbus/storage/$category-$account-$param-$share.list";
+	global $_data_path;
+	$file = "$_data_path/storage/$category-$account-$param-$share.list";
 	if (!file_exists($file) || filesize($file) < 1)
 		return $share;
 
@@ -14,9 +15,11 @@ function get_azure_storage_link($vendor, $category, $account, $param, $share)
 
 function get_storage_link($vendor, $category, $account, $param, $share)
 {
+	global $_data_path;
+
 	if ($vendor == "aws" && $category == "s3")
 	{
-		$file = "/var/cache/polynimbus/storage/$category-$account-$share.list";
+		$file = "$_data_path/storage/$category-$account-$share.list";
 		if (!file_exists($file) || filesize($file) < 1)
 			return $share;
 

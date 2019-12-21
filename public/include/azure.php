@@ -1,7 +1,8 @@
 <?php
 
 function load_azure_group_memberships($account) {
-	$file = "/var/cache/polynimbus/inventory/membership-azure-$account.list";
+	global $_data_path;
+	$file = "$_data_path/inventory/membership-azure-$account.list";
 	if (!file_exists($file))
 		return array();
 	$data = file_get_contents($file);

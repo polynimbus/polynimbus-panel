@@ -1,6 +1,7 @@
 <?php
 
-$path = "/var/cache/polynimbus/inventory";
+require "include/config.php";
+$path = "$_data_path/inventory";
 $file = "$path/projects-google.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 

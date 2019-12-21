@@ -1,5 +1,6 @@
 <?php
 
+require "include/config.php";
 require "include/page.php";
 require "include/raw.php";
 $allowed = aws_regional_raw_types();
@@ -13,7 +14,7 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/raw-aws-$type-$account-$region.json";
+$file = "$_data_path/inventory/raw-aws-$type-$account-$region.json";
 
 if (!file_exists($file))
 	die("Invalid account...");

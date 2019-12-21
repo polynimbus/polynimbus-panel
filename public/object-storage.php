@@ -1,6 +1,7 @@
 <?php
 
-$file = "/var/cache/polynimbus/inventory/object-storage.list";
+require "include/config.php";
+$file = "$_data_path/inventory/object-storage.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";

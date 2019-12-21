@@ -1,10 +1,14 @@
 <?php
 
+require "include/config.php";
+
 function get_image_name($vendor, $image) {
+	global $_data_path;
+
 	if ($vendor != "aws")
 		return $image;
 
-	$file = "/var/cache/polynimbus/aws/describe-images/$image.json";
+	$file = "$_data_path/aws/describe-images/$image.json";
 	if (!file_exists($file))
 		return $image;
 
@@ -18,11 +22,13 @@ function get_image_name($vendor, $image) {
 }
 
 function get_instance_link($vendor, $account, $region, $id) {
+	global $_data_path;
+
 	if ($vendor != "aws")
 		return $id;
 
 	$region = substr($region, 0, -1);
-	$file = "/var/cache/polynimbus/inventory/raw-aws-instances-$account-$region.json";
+	$file = "$_data_path/inventory/raw-aws-instances-$account-$region.json";
 	if (!file_exists($file) || filesize($file) < 30)
 		return $id;
 
@@ -33,7 +39,7 @@ function get_instance_link($vendor, $account, $region, $id) {
 }
 
 
-$file = "/var/cache/polynimbus/inventory/instances.list";
+$file = "$_data_path/inventory/instances.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";

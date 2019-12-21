@@ -1,5 +1,6 @@
 <?php
 
+require "include/config.php";
 require "include/page.php";
 require "include/aws.php";
 require "include/raw.php";
@@ -26,7 +27,7 @@ Available resources:
 <br />
 <?php
 
-$file = "/var/cache/polynimbus/inventory/projects-aws.list";
+$file = "$_data_path/inventory/projects-aws.list";
 if (file_exists($file)) {
 	$date = date("Y-m-d H:i:s", filemtime($file));
 	echo "Configured AWS accounts as of $date:<br /><ul>\n";
@@ -50,7 +51,7 @@ if (file_exists($file)) {
 	echo "</ul>";
 }
 
-$file = "/var/cache/polynimbus/inventory/projects-azure.list";
+$file = "$_data_path/inventory/projects-azure.list";
 if (file_exists($file)) {
 	$date = date("Y-m-d H:i:s", filemtime($file));
 	echo "Configured Azure accounts as of $date:<br /><ul>\n";

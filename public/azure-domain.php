@@ -9,7 +9,8 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/raw-azure-zone-$account-$domain.export";
+require "include/config.php";
+$file = "$_data_path/inventory/raw-azure-zone-$account-$domain.export";
 
 if (!file_exists($file))
 	die("Invalid account...");

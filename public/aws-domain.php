@@ -8,7 +8,8 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/zone-aws-$account-$domain.zone";
+require "include/config.php";
+$file = "$_data_path/inventory/zone-aws-$account-$domain.zone";
 
 if (!file_exists($file))
 	die("Invalid account...");

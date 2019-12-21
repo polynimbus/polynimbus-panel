@@ -1,6 +1,7 @@
 <?php
 
-$file = "/var/cache/polynimbus/inventory/trails.list";
+require "include/config.php";
+$file = "$_data_path/inventory/trails.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";

@@ -7,7 +7,8 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 } else
 	die("Missing arguments...");
 
-$file = "/var/cache/polynimbus/inventory/usage-azure-$account.list";
+require "include/config.php";
+$file = "$_data_path/inventory/usage-azure-$account.list";
 
 if (!file_exists($file))
 	die("Invalid account...");

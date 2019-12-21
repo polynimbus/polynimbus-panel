@@ -2,9 +2,11 @@
 
 function get_account_link($vendor, $account)
 {
+	global $_data_path;
+
 	if ($vendor == "aws")
 	{
-		$file = "/var/cache/polynimbus/inventory/users-aws-$account.list";
+		$file = "$_data_path/inventory/users-aws-$account.list";
 		if (!file_exists($file))
 			return $account;
 
@@ -14,7 +16,7 @@ function get_account_link($vendor, $account)
 
 	if ($vendor == "azure")
 	{
-		$file = "/var/cache/polynimbus/inventory/users-azure-$account.list";
+		$file = "$_data_path/inventory/users-azure-$account.list";
 		if (!file_exists($file))
 			return $account;
 
@@ -28,9 +30,11 @@ function get_account_link($vendor, $account)
 
 function get_region_link($vendor, $account, $region)
 {
+	global $_data_path;
+
 	if ($vendor == "azure")
 	{
-		$file = "/var/cache/polynimbus/inventory/usage-azure-$account.list";
+		$file = "$_data_path/inventory/usage-azure-$account.list";
 		if (!file_exists($file))
 			return $region;
 

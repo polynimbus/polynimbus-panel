@@ -1,9 +1,12 @@
 <?php
 
+require "include/config.php";
+
 function get_records_link($vendor, $account, $domain)
 {
+	global $_data_path;
 	if ($vendor == "aws") {
-		$file = "/var/cache/polynimbus/inventory/zone-aws-$account-$domain.zone";
+		$file = "$_data_path/inventory/zone-aws-$account-$domain.zone";
 		if (!file_exists($file)) return $domain;
 		$enc1 = urlencode($account);
 		$enc2 = urlencode($domain);
@@ -11,7 +14,7 @@ function get_records_link($vendor, $account, $domain)
 	}
 
 	if ($vendor == "azure") {
-		$file = "/var/cache/polynimbus/inventory/raw-azure-zone-$account-$domain.export";
+		$file = "$_data_path/inventory/raw-azure-zone-$account-$domain.export";
 		if (!file_exists($file)) return $domain;
 		$enc1 = urlencode($account);
 		$enc2 = urlencode($domain);
@@ -22,7 +25,7 @@ function get_records_link($vendor, $account, $domain)
 }
 
 
-$file = "/var/cache/polynimbus/inventory/zones.list";
+$file = "$_data_path/inventory/zones.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
