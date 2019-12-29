@@ -5,12 +5,12 @@ require "include/config.php";
 function get_records_link($vendor, $account, $domain)
 {
 	global $_data_path;
-	if ($vendor == "aws") {
-		$file = "$_data_path/inventory/zone-aws-$account-$domain.zone";
+	if ($vendor == "aws" || $vendor == "godaddy") {
+		$file = "$_data_path/inventory/zone-$vendor-$account-$domain.zone";
 		if (!file_exists($file)) return $domain;
 		$enc1 = urlencode($account);
 		$enc2 = urlencode($domain);
-		return "<a href=\"aws-domain.php?account=$enc1&domain=$enc2\">$domain</a>";
+		return "<a href=\"domain.php?vendor=$vendor&account=$enc1&domain=$enc2\">$domain</a>";
 	}
 
 	if ($vendor == "azure") {
@@ -22,6 +22,33 @@ function get_records_link($vendor, $account, $domain)
 	}
 
 	return $domain;
+}
+
+function get_details_link($vendor, $account, $domain, $id)
+{
+	global $_data_path;
+	if ($vendor == "godaddy") {
+		$file = "$_data_path/inventory/raw-godaddy-domain-$account-$id.json";
+		if (!file_exists($file)) return $id;
+		$enc1 = urlencode($account);
+		$enc2 = urlencode($domain);
+		return "<a href=\"godaddy-domain.php?account=$enc1&domain=$enc2\">$id</a>";
+	}
+
+	return $id;
+}
+
+function fix_record_count($vendor, $account, $domain, $id, $count)
+{
+	global $_data_path;
+	if ($vendor == "godaddy") {
+		$file = "$_data_path/inventory/zone-godaddy-$account-$domain.zone";
+		if (!file_exists($file)) return $count;
+		$lines = file($file, FILE_SKIP_EMPTY_LINES);
+		return count($lines);
+	}
+
+	return $count;
 }
 
 
@@ -55,9 +82,9 @@ foreach ($lines as $line) {
 	table_row(array(
 		$vendor,
 		get_account_link($vendor, $tmp[1]),
-		get_records_link($vendor, $tmp[1], $tmp[2]),
-		$tmp[3],  // zone-id
-		$tmp[4],  // records count
+		get_records_link($vendor, $tmp[1], $tmp[2]),  // domain name
+		get_details_link($vendor, $tmp[1], $tmp[2], $tmp[3]),  // zone id
+		fix_record_count($vendor, $tmp[1], $tmp[2], $tmp[3], $tmp[4])
 	), false);
 }
 

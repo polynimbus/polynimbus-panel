@@ -1,7 +1,16 @@
 <?php
-// TODO: supply vendor name as another parameter and support all vendors
 
-if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('/^([a-z0-9.-]+)$/', $_GET["domain"], $tmp2)) {
+$vendors = array(
+	"aws" => "AWS",
+	"godaddy" => "GoDaddy",
+);
+
+if (isset($vendors[@$_GET["vendor"]]) &&
+	preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) &&
+	preg_match('/^([a-z0-9.-]+)$/', $_GET["domain"], $tmp2)) {
+
+	$vendor = $_GET["vendor"];
+	$label = $vendors[$vendor];
 	$account = $tmp1[1];
 	$domain = $tmp2[1];
 	$enc = urlencode($account);
@@ -9,7 +18,7 @@ if (preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) && preg_match('
 	die("Missing arguments...");
 
 require "include/config.php";
-$file = "$_data_path/inventory/zone-aws-$account-$domain.zone";
+$file = "$_data_path/inventory/zone-$vendor-$account-$domain.zone";
 
 if (!file_exists($file))
 	die("Invalid account...");
@@ -20,7 +29,7 @@ $lines = explode("\n", $data);
 
 require "include/page.php";
 page_header("Polynimbus - domain $domain records");
-echo "AWS account <a href=\"aws-account.php?account=$enc\"><strong>$account</strong></a>, domain <strong>$domain</strong> records as of $date:<br />\n";
+echo "$label account <a href=\"$vendor-account.php?account=$enc\"><strong>$account</strong></a>, domain <strong>$domain</strong> records as of $date:<br />\n";
 table_start("domain", array(
 	"name",
 	"ttl",

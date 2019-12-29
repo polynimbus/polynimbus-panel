@@ -22,6 +22,7 @@ It supports the following cloud vendors:
 - Microsoft Azure
 - Oracle Cloud
 - Rackspace Cloud
+- GoDaddy (domains and DNS only)
 
 See Polynimbus documentation page: https://github.com/polynimbus/polynimbus
 
