@@ -1,7 +1,7 @@
 <?php
 
 require "include/config.php";
-$file = "$_data_path/inventory/object-storage.list";
+$file = "$_data_path/inventory/storage.list";
 $date = date("Y-m-d H:i:s", filemtime($file));
 
 require "include/page.php";
