@@ -5,7 +5,7 @@ require "include/config.php";
 function get_records_link($vendor, $account, $domain)
 {
 	global $_data_path;
-	if ($vendor == "aws" || $vendor == "godaddy") {
+	if ($vendor == "aws" || $vendor == "cloudflare" || $vendor == "godaddy") {
 		$file = "$_data_path/inventory/zone-$vendor-$account-$domain.zone";
 		if (!file_exists($file)) return $domain;
 		$enc1 = urlencode($account);
@@ -28,11 +28,19 @@ function get_details_link($vendor, $account, $domain, $id)
 {
 	global $_data_path;
 	if ($vendor == "godaddy") {
-		$file = "$_data_path/inventory/raw-godaddy-domain-$account-$id.json";
+		$file = "$_data_path/inventory/raw-$vendor-domain-$account-$id.json";
 		if (!file_exists($file)) return $id;
 		$enc1 = urlencode($account);
 		$enc2 = urlencode($domain);
-		return "<a href=\"godaddy-domain.php?account=$enc1&domain=$enc2\">$id</a>";
+		return "<a href=\"$vendor-domain.php?account=$enc1&domain=$enc2\">$id</a>";
+	}
+
+	if ($vendor == "cloudflare") {
+		$file = "$_data_path/inventory/raw-$vendor-zone-analytics-$account-$domain.json";
+		if (!file_exists($file)) return $id;
+		$enc1 = urlencode($account);
+		$enc2 = urlencode($domain);
+		return "<a href=\"$vendor-domain.php?account=$enc1&domain=$enc2\">$id</a>";
 	}
 
 	return $id;
@@ -41,8 +49,8 @@ function get_details_link($vendor, $account, $domain, $id)
 function fix_record_count($vendor, $account, $domain, $id, $count)
 {
 	global $_data_path;
-	if ($vendor == "godaddy") {
-		$file = "$_data_path/inventory/zone-godaddy-$account-$domain.zone";
+	if ($vendor == "cloudflare" || $vendor == "godaddy") {
+		$file = "$_data_path/inventory/zone-$vendor-$account-$domain.zone";
 		if (!file_exists($file)) return $count;
 		$lines = file($file, FILE_SKIP_EMPTY_LINES);
 		return count($lines);

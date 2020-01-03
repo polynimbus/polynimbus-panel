@@ -12,17 +12,21 @@ cloud accounts configured in Polynimbus.
 Using this panel, you can avoid over 90% of switching your browser between accounts
 during typical DevOps/SRE work and dramatically increase your productivity.
 
-It supports the following cloud vendors:
-- Alibaba Cloud
-- Amazon Web Services
-- Beyond e24cloud.com
-- Google Cloud Platform
-- Hetzner Cloud
-- Hetzner Online (classic dedicated servers)
-- Microsoft Azure
-- Oracle Cloud
-- Rackspace Cloud
-- GoDaddy (domains and DNS only)
+#### Polynimbus supports the following services and functionalities:
+
+|                       | compute | database | dns     | serverless | storage  |  access management |
+|-----------------------|---------|----------|---------|------------|----------|--------------------|
+| Alibaba Cloud         | r/o     |          |         |            |          |                    |
+| Amazon Web Services   | full    | r/o      | r/o     | r/o        | S3-only  | detailed           |
+| Beyond e24cloud.com   | full    |          |         |            |          |                    |
+| Cloudflare            |         |          | r/o     |            |          | detailed/raw       |
+| GoDaddy               |         |          | r/o     |            |          |                    |
+| Google Cloud Platform | full    |          | planned |            | planned  | basic              |
+| Hetzner Cloud         | full    |          |         |            |          |                    |
+| Hetzner Online        | r/o     |          |         |            |          |                    |
+| Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o  | detailed           |
+| Oracle Cloud          | full    |          |         |            |          |                    |
+| Rackspace Cloud       | full    |          |         |            |          |                    |
 
 See Polynimbus documentation page: https://github.com/polynimbus/polynimbus
 

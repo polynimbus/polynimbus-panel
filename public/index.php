@@ -19,7 +19,7 @@ Available resources:
 	<li><a href="databases.php">AWS/Azure - list of RDS databases</a></li>
 	<li><a href="storage.php">AWS/Azure - list of cloud storage buckets/shares/blobs/etc.</a></li>
 	<li><a href="functions.php">AWS/Azure - list of serverless functions (AWS Lambda, Azure Functions)</a></li>
-	<li><a href="zones.php">AWS/Azure/GoDaddy - list of DNS hosted zones (domains)</a></li>
+	<li><a href="zones.php">AWS/Azure/Cloudflare/GoDaddy - list of DNS hosted zones (domains)</a></li>
 	<li><a href="trails.php">AWS - list of CloudTrail log trails</a></li>
 	<li><a href="aws-raw-matrix.php">AWS - matrix of per-region raw data dumps</a></li>
 	<li><a href="google-users.php">Google Cloud - list of users and permissions (in all linked projects)</a></li>

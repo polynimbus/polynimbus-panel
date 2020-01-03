@@ -24,6 +24,16 @@ function get_account_link($vendor, $account)
 		return "<a href=\"azure-account.php?account=$enc\">$account</a>";
 	}
 
+	if ($vendor == "cloudflare")
+	{
+		$file = "$_data_path/inventory/raw-cloudflare-user-$account.json";
+		if (!file_exists($file))
+			return $account;
+
+		$enc = urlencode($account);
+		return "<a href=\"cloudflare-account.php?account=$enc\">$account</a>";
+	}
+
 	return $account;
 }
 

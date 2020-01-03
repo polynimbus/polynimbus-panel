@@ -2,6 +2,7 @@
 
 $vendors = array(
 	"aws" => "AWS",
+	"cloudflare" => "Cloudflare",
 	"godaddy" => "GoDaddy",
 );
 
