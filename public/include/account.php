@@ -4,24 +4,24 @@ function get_account_link($vendor, $account)
 {
 	global $_data_path;
 
-	if ($vendor == "aws")
+	if ($vendor == "aws" || $vendor == "azure")
 	{
-		$file = "$_data_path/inventory/users-aws-$account.list";
+		$file = "$_data_path/inventory/users-$vendor-$account.list";
 		if (!file_exists($file))
 			return $account;
 
 		$enc = urlencode($account);
-		return "<a href=\"aws-account.php?account=$enc\">$account</a>";
+		return "<a href=\"$vendor-account.php?account=$enc\">$account</a>";
 	}
 
-	if ($vendor == "azure")
+	if ($vendor == "backblaze")
 	{
-		$file = "$_data_path/inventory/users-azure-$account.list";
+		$file = "$_data_path/inventory/raw-b2-user-$account.json";
 		if (!file_exists($file))
 			return $account;
 
 		$enc = urlencode($account);
-		return "<a href=\"azure-account.php?account=$enc\">$account</a>";
+		return "<a href=\"$vendor-account.php?account=$enc\">$account</a>";
 	}
 
 	if ($vendor == "cloudflare")
@@ -31,7 +31,7 @@ function get_account_link($vendor, $account)
 			return $account;
 
 		$enc = urlencode($account);
-		return "<a href=\"cloudflare-account.php?account=$enc\">$account</a>";
+		return "<a href=\"$vendor-account.php?account=$enc\">$account</a>";
 	}
 
 	return $account;

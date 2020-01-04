@@ -3,6 +3,7 @@
 $vendors = array (
 	"aws" => "AWS S3 bucket",
 	"azure" => "Azure Storage",
+	"backblaze" => "Backblaze B2 bucket",
 );
 
 if (isset($vendors[@$_GET["vendor"]]) &&
