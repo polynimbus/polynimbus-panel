@@ -18,10 +18,11 @@ during typical DevOps/SRE work and dramatically increase your productivity.
 |-----------------------|---------|----------|---------|------------|----------|--------------------|
 | Alibaba Cloud         | r/o     |          |         |            |          |                    |
 | Amazon Web Services   | full    | r/o      | r/o     | r/o        | S3-only  | detailed           |
+| Backblaze B2          |         |          |         |            | all r/o  |                    |
 | Beyond e24cloud.com   | full    |          |         |            |          |                    |
 | Cloudflare            |         |          | r/o     |            |          | detailed/raw       |
 | GoDaddy               |         |          | r/o     |            |          |                    |
-| Google Cloud Platform | full    |          | planned |            | planned  | basic              |
+| Google Cloud Platform | full    | planned  | planned |            | GS-only  | basic              |
 | Hetzner Cloud         | full    |          |         |            |          |                    |
 | Hetzner Online        | r/o     |          |         |            |          |                    |
 | Microsoft Azure       | full    | sql-only | r/o     | r/o        | all r/o  | detailed           |
@@ -91,7 +92,7 @@ If you want to contribute:
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
 | **Author:**          | Tomasz Klim (<opensource@tomaszklim.pl>) |
-| **Copyright:**       | Copyright 2015-2019 Tomasz Klim          |
+| **Copyright:**       | Copyright 2015-2020 Tomasz Klim          |
 | **License:**         | MIT                                      |
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

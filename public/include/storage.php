@@ -17,7 +17,9 @@ function get_storage_link($vendor, $category, $account, $param, $share)
 {
 	global $_data_path;
 
-	if (($vendor == "aws" && $category == "s3") || ($vendor == "backblaze" && $category == "b2"))
+	if (($vendor == "aws" && $category == "s3")
+	||  ($vendor == "backblaze" && $category == "b2")
+	||  ($vendor == "google" && $category == "gs"))
 	{
 		$file = "$_data_path/storage/$category-$account-$share.list";
 		if (!file_exists($file) || filesize($file) < 1)

@@ -4,13 +4,14 @@ $vendors = array (
 	"aws" => "AWS S3 bucket",
 	"azure" => "Azure Storage",
 	"backblaze" => "Backblaze B2 bucket",
+	"google" => "Google Storage bucket",
 );
 
 if (isset($vendors[@$_GET["vendor"]]) &&
 	preg_match('/^([a-z0-9]+)$/', $_GET["category"], $tmp0) &&
 	preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["account"], $tmp1) &&
 	(empty(@$_GET["param1"]) || preg_match('/^([a-zA-Z0-9.-]+)$/', $_GET["param1"], $tmp2)) &&
-	preg_match('/^([a-zA-Z0-9.-]+)$/', $_GET["param2"], $tmp3)) {
+	preg_match('/^([a-zA-Z0-9._-]+)$/', $_GET["param2"], $tmp3)) {
 
 	$vendor = $_GET["vendor"];
 	$label = $vendors[$vendor];
