@@ -4,6 +4,7 @@ $vendors = array(
 	"aws" => "AWS",
 	"cloudflare" => "Cloudflare",
 	"godaddy" => "GoDaddy",
+	"linode" => "Linode",
 );
 
 if (isset($vendors[@$_GET["vendor"]]) &&

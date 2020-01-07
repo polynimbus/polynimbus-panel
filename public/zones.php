@@ -5,7 +5,7 @@ require "include/config.php";
 function get_records_link($vendor, $account, $domain)
 {
 	global $_data_path;
-	if ($vendor == "aws" || $vendor == "cloudflare" || $vendor == "godaddy") {
+	if ($vendor == "aws" || $vendor == "cloudflare" || $vendor == "godaddy" || $vendor == "linode") {
 		$file = "$_data_path/inventory/zone-$vendor-$account-$domain.zone";
 		if (!file_exists($file)) return $domain;
 		$enc1 = urlencode($account);
