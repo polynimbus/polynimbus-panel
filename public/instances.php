@@ -72,6 +72,9 @@ foreach ($lines as $line) {
 		continue;
 
 	$tmp = explode(" ", $line, 13);
+	if (!isset($tmp[3]))
+		continue;
+
 	$vendor = $tmp[0];
 	$account = $tmp[1];
 	$state = $tmp[3];
@@ -80,17 +83,17 @@ foreach ($lines as $line) {
 	table_row(array(
 		$vendor,
 		get_account_link($vendor, $account),
-		$tmp[2],
+		$tmp[2],  // hostname/ip
 		$state,
-		$tmp[9],
-		str_replace(";", "<br />", $tmp[10]),
-		$tmp[4],
+		$tmp[9],  // created date
+		str_replace(";", "<br />", $tmp[10]),  // tag(s)/label(s) - printed line by line
+		$tmp[4],  // ssh key
 		get_region_link($vendor, $account, $tmp[5]),
-		$tmp[6],
-		get_instance_link($vendor, $account, $tmp[5], $tmp[7]),
+		$tmp[6],  // instance type
+		get_instance_link($vendor, $account, $tmp[5], $tmp[7]),  // instance id
 		get_image_name($vendor, $tmp[8]),
-		$tmp[11],
-		map_acl_to_ranges($vendor, $account, $tmp[5], 22, $tmp[12]),
+		@$tmp[11],  // optional vpc-id/project
+		map_acl_to_ranges($vendor, $account, $tmp[5], 22, @$tmp[12]),  // optional list of security groups (not divided by spaces)
 	), $style);
 }
 
