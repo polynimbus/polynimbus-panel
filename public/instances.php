@@ -8,7 +8,7 @@ function get_image_name($vendor, $image) {
 	if ($vendor != "aws")
 		return $image;
 
-	$file = "$_data_path/aws/describe-images/$image.json";
+	$file = "$_data_path/cache/aws/describe-images/$image.json";
 	if (!file_exists($file))
 		return $image;
 
